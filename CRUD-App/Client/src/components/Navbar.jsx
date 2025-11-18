@@ -1,20 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+      const navigate = useNavigate();
+
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  const handleTabChange = (event, newValue) => {
+    setSelectedTab(newValue);
+    if (newValue === 0) navigate('/add-user');
+    else if (newValue === 1) navigate('/all-users');
+    else if (newValue === 2) navigate('/login');
+  };
+
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           My Site
         </Typography>
+        <Tabs
+          value={selectedTab}
+          onChange={handleTabChange}
+          textColor="inherit"
+          indicatorColor="secondary"
+          aria-label="navigation tabs"
+        >
+          <Tab label="Add User" />
+          <Tab label="All Users" />
+          <Tab label="Login" />
+        </Tabs>
       </Toolbar>
     </AppBar>
   );
