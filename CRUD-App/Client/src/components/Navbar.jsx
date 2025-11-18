@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
       const navigate = useNavigate();
 
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(-1);
 
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -17,11 +17,18 @@ const Navbar = () => {
     else if (newValue === 1) navigate('/all-users');
     else if (newValue === 2) navigate('/login');
   };
-
+  const handleTitleClick = () => {
+    navigate('/');
+    setSelectedTab(false); // or set to -1 or null to indicate no tab selected
+  };
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}
+                  onClick={handleTitleClick}
+                    style={{ cursor: 'pointer' }}
+
+        >
           My Site
         </Typography>
         <Tabs
