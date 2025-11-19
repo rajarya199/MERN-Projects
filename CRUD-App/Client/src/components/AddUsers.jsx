@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
-
+import { addUser } from '../services/api';
 const AddUsers = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,9 +17,10 @@ const AddUsers = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('User data submitted:', formData);
+   await addUser(formData)
   };
 
   return (
