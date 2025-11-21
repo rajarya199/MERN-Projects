@@ -1,10 +1,9 @@
 import axios from 'axios'
-
-const URL=''
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const addUser=async(data)=>{
     try{
-     return   await axios.post(`${URL}/add`,data)
+     return   await axios.post(`${apiUrl}/add`,data)
     }
     catch(error){
         console.log('error while calling add user api',error)
