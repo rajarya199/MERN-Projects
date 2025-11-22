@@ -24,3 +24,14 @@ export const addUser=async(request,response)=>{
  response.status(500).json({message:error.message})
     }
 }
+
+export const getAllUsers=async(req,res)=>{
+  try{
+    const users=await User.find({})
+    res.status(200).json(users)
+  }
+  catch(error){
+     response.status(500).json({message:error.message})
+
+  }
+}
